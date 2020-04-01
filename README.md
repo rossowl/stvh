@@ -10,7 +10,7 @@ edit sledovanitv.py and insert your device id and password<br/>
 create cache directory as is in the file<br/>
 
 create playlist:<br/>
-/home/hts/bin/sledovani.tv playlist > playlist.m3u<br/>
+/home/hts/bin/sledovanitv.py playlist > playlist.m3u<br/>
 
 create new automatic iptv network in tvheadend with path to generated playlist<br/>
 wait for new services<br/>
