@@ -17,7 +17,7 @@ wait for new services<br/>
 import all new services to channels<br/>
 
 xmltv:<br/>
-/home/hts/bin/sledovani.tv epg > /home/hts/.xmltv/xmltv.xml<br/>
+/home/hts/bin/sledovanitv.py epg > /home/hts/.xmltv/xmltv.xml<br/>
 cat /home/hts/.xmltv/xmltv.xml | nc -w 5 -U /home/hts/.hts/tvheadend/epggrab/xmltv.sock<br/>
 
 
