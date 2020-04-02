@@ -128,7 +128,7 @@ class SledovaniToken:
         if self.pin:
             logging.info('pin request')
 
-            requests.get(f'https://sledovanitv.cz/api/pin-unlock?pin=${self.pin}&whitelogo=1&PHPSESSID=${token}')
+            requests.get(f'https://sledovanitv.cz/api/pin-unlock?pin={self.pin}&whitelogo=1&PHPSESSID={token}')
 
         return token
 
