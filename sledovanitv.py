@@ -190,7 +190,7 @@ class SledovaniEPG:
 
 class SledovaniPlaylist:
 
-    def __init__(self, *, token, pin, quality, capabilities):
+    def __init__(self, *, token, quality, capabilities, pin=None):
         self.token = token
         self.quality = quality
         self.capabilities = capabilities
