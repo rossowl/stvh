@@ -1,0 +1,14 @@
+DEVICE = '*** YOUR DEVICE ID HERE ***'
+PASSWORD = '*** YOUR DEVICE PASSWORD HERE ***'
+PIN = '*** YOUR PARENT PIN HERE ***' # ex. '1234' or None for no-pin channels only
+ENABLE_CACHE = True
+CACHE_DIR = '/home/hts/.cache/'
+TOKEN_CACHE_MIN = 60
+EPG_CACHE_MIN = 60
+PLAYLIST_CACHE_MIN = 60
+QUALITY_SD = 20
+QUALITY_HD = 40
+QUALITY = QUALITY_HD
+CAPABILITIES = 'h265,adaptive'
+EPG_DURATION = 1439
+TYPES = ('tv',)  # or ('radio', ) or ('tv', 'radio', )
