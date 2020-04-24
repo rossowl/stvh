@@ -11,8 +11,9 @@ from datetime import datetime
 from datetime import timedelta
 from lxml import etree
 from functools import wraps
+from uuid import getnode
 
-from sledovanitv_settings import *
+from sledovanitv_settings import *  # @UnusedWildImport
 
 # logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 
@@ -76,7 +77,10 @@ class Sledovani:
         parser = argparse.ArgumentParser()
         parser.add_argument('command', type=str)
 
-        args, rem_args = parser.parse_known_args()
+        args, rem_args = parser.parse_known_args()  # @UnusedVariable
+
+        if args.command == 'register':
+            print(self.register)
 
         if args.command == 'epg':
             print(self.epg)
@@ -90,6 +94,28 @@ class Sledovani:
             args = parser.parse_args()
 
             os.system(f'ffmpeg -re -fflags +genpts -hide_banner -loglevel panic -i "{self.playlist.get_url(args.stream)}" -f mpegts -vcodec copy -acodec copy pipe:1')
+
+
+class SledovaniRegister:
+
+    def __init__(self, *, username, password):
+        self.username = username
+        self.password = password
+
+    def __str__(self):
+        return str(self.register())
+
+    def register(self):
+        mac = ':'.join(("%012X" % getnode())[i:i+2] for i in range(0, 12, 2))
+
+        r = requests.get(f'https://sledovanitv.cz/api/create-pairing?username={self.username}&password={self.password}&type=xbmc&product=xbmc&serial={mac}')
+
+        data = r.json()
+
+        if (data['status'] != 1):
+            raise SledovaniError(r.text)
+
+        return r.text
 
 
 class SledovaniToken:
@@ -220,6 +246,11 @@ class SledovaniPlaylist:
 
 
 if __name__ == '__main__':
+    register = SledovaniRegister(
+        username=LOGIN_USERNAME,
+        password=LOGIN_PASSWORD,
+    )
+
     token = SledovaniToken(
         device=DEVICE,
         password=PASSWORD,

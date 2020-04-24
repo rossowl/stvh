@@ -1,6 +1,6 @@
 # stvh
 
-sudo apt install python3 python3-requests python3-tz python3-lxml<br/>
+sudo apt install ffmpeg python3 python3-requests python3-tz python3-lxml<br/>
 
 copy sledovanitv.py to /home/hts/bin/<br/>
 check if is executable<br/>
